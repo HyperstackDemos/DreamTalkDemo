@@ -44,25 +44,16 @@ sudo apt install cmake
 We can now install the virtual environment and the dreamtalk dependencies, including PyTorch with GPU acceleration:
 ```bash
 sudo apt install python3-virtualenv
-virtualenv --python=python3.7 .venv_gpu
-source .venv_gpu/bin/activate
-pip install -r requirements-gpu.txt
-```
-
-Optionally, install the CPU virtual environment to compare the performance when running without GPU acceleration:
-```bash
-deactivate
-virtualenv --python=python3.7 .venv_cpu
-source .venv_cpu/bin/activate
-pip install -r requirements-cpu.txt
+virtualenv --python=python3.7 .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
 To confirm whether you have GPU acceleration enabled or not, run the following command:
 ```bash
 python -c "import torch; print(torch.cuda.is_available())"
 ```
-
-It should output `True`, if GPU acceleration is enabled or `False` otherwise.
+It should output `True`.
 
 Note: there's no need to install the requirements at `./dreamtalk/requirements.txt`, as the relevant dependencies have already been included at the local requirement files.
 
