@@ -1,0 +1,3 @@
+[submodule "dreamtalk"]
+	path = dreamtalk
+	url = git@github.com:ali-vilab/dreamtalk.git
