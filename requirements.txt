@@ -14,5 +14,5 @@ transformers==4.28.1
 dlib
 # the GPU version will be picked automatically
 torch
-torchaudiopip
+torchaudio
 torchvision
