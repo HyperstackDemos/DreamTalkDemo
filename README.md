@@ -11,13 +11,14 @@ At the time of this writing, the default python version in the Hyperstack Ubuntu
 
 We can install python 3.7 like follows:
 ```bash
+export NEEDRESTART_MODE=a
 sudo apt update
-sudo apt install software-properties-common
-sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get -y install software-properties-common
+sudo add-apt-repository -y ppa:deadsnakes/ppa
 sudo apt update
-sudo apt install python3.7
-sudo apt-get install python3.7-dev
-sudo apt install python3.7-distutils
+sudo -E apt-get -y install python3.7
+sudo -E apt-get -y install python3.7-dev
+sudo -E apt-get -y install python3.7-distutils
 ```
 
 If everything went well, you should be able to run the following command successfully:
@@ -27,23 +28,23 @@ python3.7 --version
 
 ### Install ffmpeg and related libraries
 ```bash
-sudo apt install libavdevice-dev libavfilter-dev libavformat-dev
-sudo apt install ffmpeg
+sudo -E apt-get -y install libavdevice-dev libavfilter-dev libavformat-dev
+sudo -E apt-get -y install ffmpeg
 ```
 
 ### Other system dependencies
 ```bash
-sudo apt-get -y install cudnn9-cuda-12
-sudo apt-get install libopenblas-dev liblapack-dev
-sudo apt-get install libx11-dev
-sudo apt-get install pkg-config
-sudo apt install cmake
+sudo -E apt-get -y install cudnn9-cuda-12
+sudo -E apt-get -y install libopenblas-dev liblapack-dev
+sudo -E apt-get -y install libx11-dev
+sudo -E apt-get -y install pkg-config
+sudo -E apt-get -y install cmake
 ```
 
 ### Install project dependencies
 We can now install the virtual environment and the dreamtalk dependencies, including PyTorch with GPU acceleration:
 ```bash
-sudo apt install python3-virtualenv
+sudo -E apt-get -y install python3-virtualenv
 virtualenv --python=python3.7 .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -95,3 +96,7 @@ python inference_for_demo_video.py \
 ```
 
 In either case, the output will appear at `./dreamtalk/output_video/acknowledgement_english@M030_front_neutral_level1_001@male_face.mp4` (it will be overritten, if it exists).
+
+## Permitted use
+
+In accordance with the [disclaimer](https://github.com/ali-vilab/dreamtalk?tab=readme-ov-file#disclaimer) in the Dreamtalk repository, the content of this repository is for RESEARCH/NON-COMMERCIAL USE ONLY.
