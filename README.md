@@ -56,7 +56,7 @@ python -c "import torch; print(torch.cuda.is_available())"
 ```
 It should output `True`.
 
-Note: there's no need to install the requirements at `./dreamtalk/requirements.txt`, as the relevant dependencies have already been included at the local requirement files.
+Note: there's no need to install the requirements at `./dreamtalk/requirements.txt`, as the relevant dependencies have already been included at the local requirements file.
 
 ## Checkpoints
 
