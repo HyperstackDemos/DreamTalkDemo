@@ -12,6 +12,7 @@ av==10.0.0
 urllib3==1.26.6
 transformers==4.28.1
 dlib
+seaborn
 # the GPU version will be picked automatically
 torch
 torchaudio
