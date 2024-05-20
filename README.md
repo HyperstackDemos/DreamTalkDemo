@@ -47,7 +47,7 @@ We can now install the virtual environment and the dreamtalk dependencies, inclu
 sudo -E apt-get -y install python3-virtualenv
 virtualenv --python=python3.7 .venv
 source .venv/bin/activate
-pip install -r requirementsp-dreamtalk.txt
+pip install -r requirements-dreamtalk.txt
 ```
 
 To confirm whether you have GPU acceleration enabled or not, run the following command:
