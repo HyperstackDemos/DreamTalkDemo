@@ -19,20 +19,3 @@ urllib3
 transformers
 dlib
 seaborn
-
-# OpenVoice
-librosa
-#faster-whisper
-pydub
-wavmark
-eng_to_ipa
-inflect
-unidecode
-whisper-timestamped
-openai
-python-dotenv
-pypinyin
-cn2an
-jieba
-gradio
-langid
