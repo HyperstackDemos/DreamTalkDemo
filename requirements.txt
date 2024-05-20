@@ -1,19 +1,38 @@
-yacs==0.1.8
-scipy==1.7.3
-scikit-image==0.19.3
-scikit-learn==1.0.2
-PyYAML==6.0
-Pillow==9.1.0
-numpy==1.21.5
-opencv-python==4.4.0.46
-imageio==2.18.0
-ffmpeg-python==0.2.0
-av==10.0.0
-urllib3==1.26.6
-transformers==4.28.1
-dlib
-seaborn
-# the GPU version will be picked automatically
+# Pytorch (the GPU version will be picked automatically)
 torch
 torchaudio
 torchvision
+
+# Dreamtalk
+yacs
+scipy
+scikit-image
+scikit-learn
+PyYAML
+Pillow
+numpy
+opencv-python
+imageio
+ffmpeg-python
+av
+urllib3
+transformers
+dlib
+seaborn
+
+# OpenVoice
+librosa
+#faster-whisper
+pydub
+wavmark
+eng_to_ipa
+inflect
+unidecode
+whisper-timestamped
+openai
+python-dotenv
+pypinyin
+cn2an
+jieba
+gradio
+langid
