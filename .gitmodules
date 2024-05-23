@@ -2,3 +2,13 @@
 	path = dreamtalk
 	url = git@github.com:ali-vilab/dreamtalk.git
 	ignore = dirty
+
+[submodule "OpenVoice"]
+	path = OpenVoice
+	url = git@github.com:myshell-ai/OpenVoice.git
+	ignore = dirty
+
+[submodule "MeloTTS"]
+	path = MeloTTS
+	url = git@github.com:myshell-ai/MeloTTS.git
+	ignore = dirty
