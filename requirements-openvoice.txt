@@ -15,3 +15,9 @@ jieba
 gradio
 langid
 datasets
+huggingface-hub
+scipy
+git+https://github.com/huggingface/diffusers.git@sd3
+transformers
+accelerate
+sentencepiece
