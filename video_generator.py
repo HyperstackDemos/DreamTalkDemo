@@ -22,7 +22,7 @@ class DreamTalkContext:
 
 
 # Adapted from https://github.com/ali-vilab/dreamtalk/blob/main/inference_for_demo_video.py
-def generate(image_name, audio_name, mood, gender, should_crop=True, device="cuda"):
+def generate(image_name, audio_name, mood, gender, device="cuda"):
     with DreamTalkContext():
         from dreamtalk.inference_for_demo_video import (
             crop_src_image,
@@ -98,10 +98,7 @@ def generate(image_name, audio_name, mood, gender, should_crop=True, device="cud
 
         # get src image
         src_img_path = os.path.join(tmp_dir, "src_img.png")
-        if should_crop:
-            crop_src_image(img_path, src_img_path, 0.4)
-        else:
-            shutil.copy(img_path, src_img_path)
+        crop_src_image(img_path, src_img_path, 0.4)
 
         with torch.no_grad():
             # get diff model and load checkpoint
@@ -121,7 +118,7 @@ def generate(image_name, audio_name, mood, gender, should_crop=True, device="cud
             # get renderer
             renderer = get_netG("./checkpoints/renderer.pt", device)
             # render video
-            output_video_path = f"../output/{audio_name}.mp4"
+            output_video_path = f"../output/{image_name}.mp4"
             render_video(
                 renderer,
                 src_img_path,
