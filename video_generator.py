@@ -1,5 +1,5 @@
 import os
-import shutil
+import random
 import subprocess
 
 import numpy as np
@@ -22,7 +22,9 @@ class DreamTalkContext:
 
 
 # Adapted from https://github.com/ali-vilab/dreamtalk/blob/main/inference_for_demo_video.py
-def generate(image_name, audio_name, mood, gender, device="cuda"):
+def generate(
+    image_name, audio_name, mood=None, gender="female", base_dir="..", device="cuda"
+):
     with DreamTalkContext():
         from dreamtalk.inference_for_demo_video import (
             crop_src_image,
@@ -39,8 +41,8 @@ def generate(image_name, audio_name, mood, gender, device="cuda"):
         cfg.CF_GUIDANCE.SCALE = 1.0
         cfg.freeze()
 
-        wav_path = f"../audio/{audio_name}.wav"
-        img_path = f"../img/{image_name}.jpg"
+        wav_path = os.path.join(base_dir, f"audio/{audio_name}.wav")
+        img_path = os.path.join(base_dir, f"img/{image_name}.jpg")
         gender_prefix = "M030" if gender == "male" else "W009"
         supported_moods = [
             "angry",
@@ -52,6 +54,8 @@ def generate(image_name, audio_name, mood, gender, device="cuda"):
             "sad",
             "fear",
         ]
+        if not mood:
+            mood = random.choice(supported_moods)
         if mood not in supported_moods:
             raise NotImplementedError(
                 f'Mood "{mood}" was not recognized. Supported moods are {supported_moods}'
@@ -118,7 +122,7 @@ def generate(image_name, audio_name, mood, gender, device="cuda"):
             # get renderer
             renderer = get_netG("./checkpoints/renderer.pt", device)
             # render video
-            output_video_path = f"../output/{image_name}.mp4"
+            output_video_path = os.path.join(base_dir, f"output/{image_name}.mp4")
             render_video(
                 renderer,
                 src_img_path,

@@ -1,5 +1,16 @@
-# DreamTalk demo
-A demo of [DreamTalk](https://github.com/ali-vilab/dreamtalk) from Ma et. al, for the purpose of video generation.
+# Video generation demo
+
+This repo is a showcase of image-to-video, text-to-speech, and text-to-image tasks for the purpose of video content generation.
+
+In particular, we have a look at the following technologies:
+* [DreamTalk](https://github.com/ali-vilab/dreamtalk) from Ma et. al.
+* [OpenVoice](https://github.com/myshell-ai/OpenVoice) from Qin et. al.
+* [StableDiffusion 3](https://stability.ai/news/stable-diffusion-3) from Stability.AI
+
+## Virtual enviroments
+
+We will use 2 different virtual environments to contain the
+
 
 ## Installation
 Clone this repository with submodules:
