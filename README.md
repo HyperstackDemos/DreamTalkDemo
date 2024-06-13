@@ -7,17 +7,18 @@ In particular, we have a look at the following technologies:
 * [OpenVoice](https://github.com/myshell-ai/OpenVoice) from Qin et. al.
 * [StableDiffusion 3](https://stability.ai/news/stable-diffusion-3) from Stability.AI
 
-## Virtual enviroments
-
-We will use 2 different virtual environments to contain the
+Please, refer to the notebooks for an ellaboration on the experiments.
 
 
 ## Installation
-Clone this repository with submodules:
+You can reproduce the results on a [Hyperstack](https://www.hyperstack.cloud/) VM with ubuntu.
+
+Start by cloning this repository with submodules:
 ```bash
 git clone --recurse-submodules <repo_url>
 ```
-### Install python 3.7
+
+## Install python 3.7
 At the time of this writing, the default python version in the Hyperstack Ubuntu VM is python 3.10. However, we will need python 3.7 due to specific dependency requirements.
 
 We can install python 3.7 like follows:
@@ -37,13 +38,13 @@ If everything went well, you should be able to run the following command success
 python3.7 --version
 ```
 
-### Install ffmpeg and related libraries
+## Install ffmpeg and related libraries
 ```bash
 sudo -E apt-get -y install libavdevice-dev libavfilter-dev libavformat-dev
 sudo -E apt-get -y install ffmpeg
 ```
 
-### Other system dependencies
+## Other system dependencies
 ```bash
 sudo -E apt-get -y install cudnn9-cuda-12
 sudo -E apt-get -y install libopenblas-dev liblapack-dev
@@ -52,12 +53,18 @@ sudo -E apt-get -y install pkg-config
 sudo -E apt-get -y install cmake
 ```
 
-### Install project dependencies
-We can now install the virtual environment and the dreamtalk dependencies, including PyTorch with GPU acceleration:
+## Virtual enviroments
+We will create 2 different virtual environments to contain the different dependencies:
+* `venv_dreamtalk`: contains the dependencies needed to run DreamTalk, based on python 3.7.
+* `venv_openvoice`: contains the dependencies needed to run OpenVoice and StableDiffusion 3, based on python 3.10.
+
+## Install project dependencies
+Let's start with `venv_dreamtalk` virtual environment.
+
 ```bash
 sudo -E apt-get -y install python3-virtualenv
-virtualenv --python=python3.7 .venv
-source .venv/bin/activate
+virtualenv --python=python3.7 .venv_dreamtalk
+source .venv_dreamtalk/bin/activate
 pip install -r requirements-dreamtalk.txt
 ```
 
@@ -67,46 +74,18 @@ python -c "import torch; print(torch.cuda.is_available())"
 ```
 It should output `True`.
 
-Note: there's no need to install the requirements at `./dreamtalk/requirements.txt`, as the relevant dependencies have already been included at the local requirements file.
+Let's continue now with the `venv_openvoice` virtual environment.
+
+```bash
+deactivate
+virtualenv .venv_openvoice
+source .venv_openvoice/bin/activate
+pip install -r requirements-openvoice.txt
+```
 
 ## Checkpoints
 
-You need to copy the checkpoints manually to the `./dreamtalk/checkpoints` folder. The checkpoints are not publicly available and you need to get them from the authors, as described [here](https://github.com/ali-vilab/dreamtalk?tab=readme-ov-file#download-checkpoints).
-
-## Checking installation
-
-You can verify if you followed all steps successfully by running a sample generation.
-
-When running with GPU acceleration:
-```bash
-source .venv_gpu/bin/activate
-cd dreamtalk
-python inference_for_demo_video.py \
---wav_path data/audio/acknowledgement_english.m4a \
---style_clip_path data/style_clip/3DMM/M030_front_neutral_level1_001.mat \
---pose_path data/pose/RichardShelby_front_neutral_level1_001.mat \
---image_path data/src_img/uncropped/male_face.png \
---cfg_scale 1.0 \
---max_gen_len 30 \
---output_name acknowledgement_english@M030_front_neutral_level1_001@male_face
-```
-
-When running on the CPU:
-```bash
-source .venv_cpu/bin/activate
-cd dreamtalk
-python inference_for_demo_video.py \
---wav_path data/audio/acknowledgement_english.m4a \
---style_clip_path data/style_clip/3DMM/M030_front_neutral_level1_001.mat \
---pose_path data/pose/RichardShelby_front_neutral_level1_001.mat \
---image_path data/src_img/uncropped/male_face.png \
---cfg_scale 1.0 \
---max_gen_len 30 \
---output_name acknowledgement_english@M030_front_neutral_level1_001@male_face
---device=cpu
-```
-
-In either case, the output will appear at `./dreamtalk/output_video/acknowledgement_english@M030_front_neutral_level1_001@male_face.mp4` (it will be overritten, if it exists).
+You need to copy the checkpoints for DreamTalk to the `./dreamtalk/checkpoints` folder manually. The checkpoints are not publicly available and you need to get them from the authors, as described [here](https://github.com/ali-vilab/dreamtalk?tab=readme-ov-file#download-checkpoints).
 
 ## Permitted use
 
