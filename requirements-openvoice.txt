@@ -17,7 +17,7 @@ langid
 datasets
 huggingface-hub
 scipy
-difussers
+diffusers
 transformers
 accelerate
 sentencepiece
