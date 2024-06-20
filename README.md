@@ -74,12 +74,17 @@ python -c "import torch; print(torch.cuda.is_available())"
 ```
 It should output `True`.
 
-Let's continue now with the `venv_openvoice` virtual environment.
+Let's continue now with the `venv_openvoice` virtual environment. We need to install the set of dependencies for OpenVoice and Mello, which provides text-to-speech capabilities.
 
 ```bash
 deactivate
 virtualenv .venv_openvoice
 source .venv_openvoice/bin/activate
+cd MeloTTS
+pip install -e .
+python -m unidic download
+echo `pwd` > /home/ubuntu/demos/dreamtalk-demo/.venv_openvoice/lib/python3.10/site-packages/pythonpath.pth
+cd ..
 pip install -r requirements-openvoice.txt
 ```
 
