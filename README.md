@@ -88,6 +88,16 @@ cd ..
 pip install -r requirements-openvoice.txt
 ```
 
+Finally, we need to make the CUDNN libraries available to the Mello package as follows:
+```bash
+export CUDNN_PATH=$(dirname $(python -c "import nvidia.cudnn;print(nvidia.cudnn.__file__)"))
+export LD_LIBRARY_PATH=$CUDNN_PATH/lib
+echo "export CUDNN_PATH=$CUDNN_PATH" >> .venv_openvoice/bin/activate
+echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH" >> .venv_openvoice/bin/activate
+```
+
+Deactivate and activate again the environment, if needed.
+
 ## Checkpoints
 
 You need to copy the checkpoints for DreamTalk to the `./dreamtalk/checkpoints` folder manually. The checkpoints are not publicly available and you need to get them from the authors, as described [here](https://github.com/ali-vilab/dreamtalk?tab=readme-ov-file#download-checkpoints).
