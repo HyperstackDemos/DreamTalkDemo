@@ -1,9 +1,0 @@
-diffusers
-transformers
-accelerate
-sentencepiece
-datasets
-huggingface-hub
-scipy
-python-dotenv
-protobuf

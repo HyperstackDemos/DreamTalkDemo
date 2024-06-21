@@ -14,4 +14,10 @@ cn2an
 jieba
 gradio
 langid
+datasets
+huggingface-hub
+scipy
+diffusers
 transformers
+accelerate
+sentencepiece
