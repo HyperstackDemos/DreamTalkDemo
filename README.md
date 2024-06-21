@@ -54,9 +54,10 @@ sudo -E apt-get -y install cmake
 ```
 
 ## Virtual enviroments
-We will create 2 different virtual environments to contain the different dependencies:
+We will create 3 different virtual environments to contain the different dependencies:
 * `venv_dreamtalk`: contains the dependencies needed to run DreamTalk, based on python 3.7.
-* `venv_openvoice`: contains the dependencies needed to run OpenVoice and StableDiffusion 3, based on python 3.10.
+* `venv_openvoice`: contains the dependencies needed to run OpenVoice, based on python 3.10.
+* `venv_sd3`:  contains the dependencies needed to run StableDiffusion 3, based on python 3.10.
 
 ## Install project dependencies
 Let's start with `venv_dreamtalk` virtual environment.
@@ -88,7 +89,7 @@ cd ..
 pip install -r requirements-openvoice.txt
 ```
 
-Finally, we need to make the CUDNN libraries available to the Mello package as follows:
+We need to make the CUDNN libraries available to the Mello package as follows:
 ```bash
 export CUDNN_PATH=$(dirname $(python -c "import nvidia.cudnn;print(nvidia.cudnn.__file__)"))
 export LD_LIBRARY_PATH=$CUDNN_PATH/lib
@@ -97,6 +98,14 @@ echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH" >> .venv_openvoice/bin/activate
 ```
 
 Deactivate and activate again the environment, if needed.
+
+For the SD3 environment, we can create it as follows:
+```bash
+deactivate
+virtualenv .venv_sd3
+source .venv_sd3/bin/activate
+pip install -r requirements-sd3.txt
+```
 
 ## Checkpoints
 
